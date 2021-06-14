@@ -9,11 +9,12 @@ import { Route } from 'react-router';
 import { EventItemType } from '../../types/types';
 import EventForm from '../EventForm';
 import { Link } from 'react-router-dom';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 function App() {
 
   const [selectedDate, setSelectedDate] = useState<string | undefined>()
-  const [eventList, setEventList] = useState<EventItemType[]>([
+  const [eventList, setEventList] = useLocalStorage<EventItemType[]>('eventList', [
     {
       id: 1,
       date: 'Mon Jun 07 2021 00:00:00 GMT+0400 (GMT+04:00)',
