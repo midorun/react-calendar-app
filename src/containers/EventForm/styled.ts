@@ -4,10 +4,21 @@ export const Styles = styled.div`
   padding: 0 10px;
   width: 500px;
 
-  select, input, label{
+  select, input, label, textarea{
+    margin-top: 5px;
     font-size: 16px;
+    font-family: inherit;
   }
 
+  
+  input, textarea{
+    padding-left: 10px;
+  }
+
+  select{
+    padding-left: 7px;
+  }
+  
   h1{
     text-align: center;
   }
@@ -18,19 +29,12 @@ export const Styles = styled.div`
     flex-direction: column;
   }
 
-  input{
-    margin-top: 5px;
-    padding-left: 10px;
+  input, select{
     height: 30px;
   }
 
   input[type=time]{
     width: 150px;
-  }
-
-  select{
-    height: 30px;
-    
   }
 
   button, a{
@@ -63,5 +67,11 @@ export const Styles = styled.div`
 
   .submit-btn{
     width: 100%;
+  }
+
+  .field-error{
+    margin-left: auto;
+    color: #de3510;
+    font-weight: 700;
   }
 `

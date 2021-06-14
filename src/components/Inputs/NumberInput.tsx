@@ -1,11 +1,14 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { FieldRenderProps } from 'react-final-form'
 
-type Props = FieldRenderProps<number>
+type Props = FieldRenderProps<string>
 
 const NumberInput: FC<Props> = ({ input, meta, ...rest }) => {
   return (
-    <input type="number" {...input} {...rest} />
+    <>
+      <input type="number" step={100} {...input} {...rest} />
+      {meta.error && meta.touched && <span className="field-error">{meta.error}</span>}
+    </>
   )
 }
 

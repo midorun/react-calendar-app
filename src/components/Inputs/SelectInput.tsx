@@ -1,14 +1,26 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 
 interface Props {
   input: any,
   meta: any,
-  value: string
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void,
 }
 
-const SelectInput: FC<Props> = React.forwardRef<HTMLSelectElement, Props>(({ input, meta, value, ...rest }, ref) => {
+const SelectInput: FC<Props> = React.forwardRef<HTMLSelectElement, Props>(({ input, onChange, meta, ...rest }, ref) => {
+
+  const customInput = {
+    ...input,
+    onChange: (e: ChangeEvent<HTMLSelectElement>) => {
+      input.onChange(e);
+      onChange(e)
+    }
+  }
+
   return (
-    <select ref={ref} onChange={input.onChange(value)} {...rest} />
+    <>
+      <select ref={ref} {...customInput} {...rest} />
+      {meta.error && meta.touched && <span className="field-error">{meta.error}</span>}
+    </>
   )
 })
 

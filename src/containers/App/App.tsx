@@ -8,6 +8,7 @@ import EventList from '../EventList/EventList';
 import { Route } from 'react-router';
 import { EventItemType } from '../../types/types';
 import EventForm from '../EventForm';
+import { Link } from 'react-router-dom';
 
 function App() {
 
@@ -70,32 +71,30 @@ function App() {
   }
 
   return (
-    <ST.AppWrapper>
+    <ST.Styles>
       <Route exact path={'/'}>
-        <ST.CalendarWrapper>
+        <div className="calendar-wrapper">
           <Calendar
             onClickDay={(value) => handleCalendarDayClick(value)}
           />
           {
             selectedDate ?
-              <ST.AddEventLinkWrapper>
-                <ST.AddEventLink
-                  to={{
-                    pathname: "/EventForm",
-                    state: {
-                      eventItem: {
-                        date: selectedDate
-                      },
-                      actionOverEventItem: "addEvent"
-                    }
-                  }}
-                >
-                  Добавить
-                </ST.AddEventLink>
-              </ST.AddEventLinkWrapper> :
+              <Link className="add-link"
+                to={{
+                  pathname: "/EventForm",
+                  state: {
+                    eventItem: {
+                      date: selectedDate
+                    },
+                    actionOverEventItem: "addEvent"
+                  }
+                }}
+              >
+                Добавить
+                </Link> :
               null
           }
-        </ST.CalendarWrapper>
+        </div>
 
         {
           selectedDate ? <EventList eventList={sortEventList(eventList, selectedDate)} onDeleteEvent={deleteEvent} /> : null
@@ -109,7 +108,7 @@ function App() {
           onChangeEvent={changeEvent}
         />
       </Route>
-    </ST.AppWrapper>
+    </ST.Styles>
   );
 }
 
